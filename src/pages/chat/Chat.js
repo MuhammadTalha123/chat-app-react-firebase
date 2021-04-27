@@ -3,7 +3,7 @@ import React from 'react';
 const Chat = () => {
     return (
         <div>
-            Component!
+        Chat!
         </div>
     );
 };
