@@ -1,9 +1,14 @@
 import React from 'react';
+import Passwordinput from "../../components/passwordinput/Passwordinput";
+import Emailinput from '../../components/emialinput/Emailinput';
+import Button from "../../components/button/Button";
 
 const Signin = () => {
     return (
         <div>
-        Signin!
+            <Emailinput />
+            <Passwordinput />
+            <Button text="SIGNIN" />
         </div>
     );
 };
