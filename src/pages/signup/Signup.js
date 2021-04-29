@@ -4,6 +4,7 @@ import Passwordinput from "../../components/passwordinput/Passwordinput";
 import Emailinput from "../../components/emialinput/Emailinput";
 import Button from "../../components/button/Button";
 import { app } from "../../firebase/firebaseConfig";
+import history from "../../routes/history";
 
 const Signup = () => {
   const handleRegister = () => {
@@ -16,6 +17,7 @@ const Signup = () => {
       .then((userCredential) => {
         var user = userCredential.user;
         console.log(user);
+        history.push("/");
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -29,6 +31,7 @@ const Signup = () => {
       <Emailinput />
       <Passwordinput />
       <Button onclick={handleRegister} text="SIGNUP" />
+      <Button text="SIGNIN" onclick={() => history.push("/signin")} />
     </div>
   );
 };

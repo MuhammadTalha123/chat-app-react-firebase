@@ -5,7 +5,7 @@ const Passwordinput = () => {
     <div>
       <div>
         <h2>PASSWORD</h2>
-        <input type="text" id="password-id" placeholder="Enter Your Password..." />
+        <input type="password" id="password-id" placeholder="Enter Your Password..." />
       </div>
     </div>
   );

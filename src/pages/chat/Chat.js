@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from "../../components/navbar/Navbar";
 
 const Chat = () => {
     return (
         <div>
-        Chat!
+            <Navbar />
+            <h1>CONTACT LIST</h1>
         </div>
     );
 };
