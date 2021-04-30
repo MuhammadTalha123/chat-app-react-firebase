@@ -5,7 +5,7 @@ const Emailinput = () => {
         <div>
             <div>
                 <h2>EMAIL</h2>
-                <input type="text" id="email-id" placeholder="Enter Your Email..." />
+                <input required type="text" id="email-id" placeholder="Enter Your Email..." />
             </div>
         </div>
     );

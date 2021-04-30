@@ -18,7 +18,6 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-        <button onClick={()=>history.push("./chat")}>Go Home</button>
         <button onClick={logout}>Logout</button>
       </nav>
     </div>

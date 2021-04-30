@@ -8,8 +8,14 @@ import history from "../../routes/history";
 const Signin = () => {
   const handleSignin = () => {
     let email = document.getElementById("email-id").value;
-    // let name = document.getElementById("name-id").value;
     let password = document.getElementById("password-id").value;
+
+    // if (email == "") {
+    //   alert("Email is Essential");
+    // }else if (password == "") {
+    //   alert("Password is Essential");
+    // }
+
     app
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -21,6 +27,7 @@ const Signin = () => {
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
+        alert(errorMessage);
         console.log(errorMessage);
       });
   };
@@ -29,6 +36,7 @@ const Signin = () => {
       <Emailinput />
       <Passwordinput />
       <Button onclick={handleSignin} text="SIGNIN" />
+      <p>First you signup your account.</p>
       <Button text="SIGNUP" onclick={() => history.push("/signup")} />
     </div>
   );

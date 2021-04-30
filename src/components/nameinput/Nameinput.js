@@ -5,7 +5,7 @@ const Nameinput = () => {
     <div>
       <div>
         <h2>NAME</h2>
-        <input type="text" id="name-id" placeholder="Enter Your Name..." />
+        <input required type="text" id="name-id" placeholder="Enter Your Name..." />
       </div>
     </div>
   );
