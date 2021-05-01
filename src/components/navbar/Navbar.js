@@ -9,6 +9,7 @@ const Navbar = () => {
       .signOut()
       .then(() => {
         localStorage.removeItem("token");
+        localStorage.removeItem("email");
         history.push("/signin");
       })
       .catch((error) => {
