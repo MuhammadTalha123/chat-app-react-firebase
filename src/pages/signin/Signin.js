@@ -19,9 +19,11 @@ const Signin = () => {
     app
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+      .then(async(userCredential) => {
         var user = userCredential.user;
-        console.log(user);
+        let token = await user.getIdToken();
+        console.log(token);
+        localStorage.setItem("token", token);
         history.push("/");
       })
       .catch((error) => {

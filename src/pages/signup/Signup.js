@@ -23,7 +23,7 @@ const Signup = () => {
     app
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         var user = userCredential.user;
         app
           .firestore()
@@ -33,7 +33,6 @@ const Signup = () => {
             userName: name,
             uid: user.uid,
             userEmail: user.email,
-            userPassword: password,
           })
           .then(() => {
             console.log("Document successfully written!");
@@ -41,7 +40,9 @@ const Signup = () => {
           .catch((error) => {
             console.error("Error writing document: ", error);
           });
-        console.log(user);
+        let token = await user.getIdToken();
+        console.log(token);
+        localStorage.setItem("token", token);
         history.push("/");
       })
       .catch((error) => {
