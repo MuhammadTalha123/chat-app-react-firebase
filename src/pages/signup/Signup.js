@@ -43,6 +43,7 @@ const Signup = () => {
         let token = await user.getIdToken();
         console.log(token);
         localStorage.setItem("token", token);
+        localStorage.setItem("email", user.email);
         history.push("/");
       })
       .catch((error) => {
