@@ -35,20 +35,45 @@ function FormDialog() {
 
   const handleInviteFriend = () => {
     let inputValue = document.getElementById("invite-email-input").value;
-    console.log(inputValue);
-    const usersRef = app.firestore().collection("users").doc(inputValue);
+    if (inputValue) {
+      let myEmail = localStorage.getItem("email");
+      const usersRef = app.firestore().collection("users").doc(inputValue);
+      const myRef = app.firestore().collection("users").doc(myEmail);
 
-    usersRef.get().then((docSnapshot) => {
-      if (docSnapshot.exists) {
-        usersRef.onSnapshot((doc) => {
-          // do stuff with the data
+      usersRef.get().then((docSnapshot) => {
+        if (docSnapshot.exists) {
           console.log("user exist.");
-        });
-      } else {
-        console.log("user not exist.");
-        // create the document
-      }
-    });
+          console.log(docSnapshot);
+          console.log(docSnapshot.data());
+          let requestList = docSnapshot.data().friendsRequest;
+          requestList.push({ from: myEmail, to: inputValue });
+          usersRef.set({
+            friendsRequest: requestList,
+            userName: docSnapshot.data().userName,
+            uid: docSnapshot.data().uid,
+            userEmail: docSnapshot.data().userEmail,
+            friends: docSnapshot.data().friends,
+          });
+          myRef.get().then((docSnapshot) => {
+            let requestList = docSnapshot.data().friendsRequest;
+            requestList.push({ from: myEmail, to: inputValue });
+            myRef.set({
+              friendsRequest: requestList,
+              userName: docSnapshot.data().userName,
+              uid: docSnapshot.data().uid,
+              userEmail: docSnapshot.data().userEmail,
+              friends: docSnapshot.data().friends,
+            });
+          });
+          handleClose();
+        } else {
+          console.log("user not exist.");
+          alert("user not exist.");
+        }
+      });
+    } else {
+      alert("Empty Field.");
+    }
   };
 
   return (

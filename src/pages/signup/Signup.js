@@ -33,6 +33,8 @@ const Signup = () => {
             userName: name,
             uid: user.uid,
             userEmail: user.email,
+            friends: [],
+            friendsRequest: [],
           })
           .then(() => {
             console.log("Document successfully written!");
