@@ -7,6 +7,7 @@ import Signup from "../pages/signup/Signup";
 import Chat from "../pages/chat/Chat";
 import { GuestRoute } from "../routes/guestRoute/guestRoute";
 import { PrivateRoute } from "../routes/privateRoute/privateRoute";
+import FriendRequest from "../pages/friendRequest/FriendRequest";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
           <GuestRoute path="/signup" component={Signup} />
           <PrivateRoute path="/chat" component={Chat} />
           <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/friendrequest" component={FriendRequest} />
         </Switch>
       </Router>
     </div>

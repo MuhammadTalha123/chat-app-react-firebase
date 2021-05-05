@@ -1,17 +1,3 @@
-// import React from "react";
-
-// const AddFriend = () => {
-//   return (
-//     <div>
-//       <div className="add-friend-icon-div">
-//         <i className="fad fa-plus" style={{fontSize:"50px"}}></i>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AddFriend;
-
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -43,29 +29,35 @@ function FormDialog() {
       usersRef.get().then((docSnapshot) => {
         if (docSnapshot.exists) {
           console.log("user exist.");
-          console.log(docSnapshot);
-          console.log(docSnapshot.data());
           let requestList = docSnapshot.data().friendsRequest;
-          requestList.push({ from: myEmail, to: inputValue });
-          usersRef.set({
-            friendsRequest: requestList,
-            userName: docSnapshot.data().userName,
-            uid: docSnapshot.data().uid,
-            userEmail: docSnapshot.data().userEmail,
-            friends: docSnapshot.data().friends,
+          let ifExist = requestList.find((element) => {
+            return element.from === myEmail && element.to === inputValue;
           });
-          myRef.get().then((docSnapshot) => {
-            let requestList = docSnapshot.data().friendsRequest;
+          if (!ifExist) {
             requestList.push({ from: myEmail, to: inputValue });
-            myRef.set({
+            usersRef.set({
               friendsRequest: requestList,
               userName: docSnapshot.data().userName,
               uid: docSnapshot.data().uid,
               userEmail: docSnapshot.data().userEmail,
               friends: docSnapshot.data().friends,
             });
-          });
-          handleClose();
+            myRef.get().then((docSnapshot) => {
+              let requestList = docSnapshot.data().friendsRequest;
+              requestList.push({ from: myEmail, to: inputValue });
+              myRef.set({
+                friendsRequest: requestList,
+                userName: docSnapshot.data().userName,
+                uid: docSnapshot.data().uid,
+                userEmail: docSnapshot.data().userEmail,
+                friends: docSnapshot.data().friends,
+              });
+            });
+            handleClose();
+          } else {
+            alert("Alredy request sent...");
+            handleClose();
+          }
         } else {
           console.log("user not exist.");
           alert("user not exist.");

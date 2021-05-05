@@ -21,6 +21,7 @@ const Navbar = () => {
     <div>
       <nav>
         <button onClick={logout}>Logout</button>
+        <button onClick={() => history.push("/friendrequest")}>FRIEND REQUEST</button>
       </nav>
     </div>
   );
