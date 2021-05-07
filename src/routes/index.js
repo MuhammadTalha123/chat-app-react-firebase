@@ -16,7 +16,7 @@ const Index = () => {
         <Switch>
           <GuestRoute path="/signin" component={Signin} />
           <GuestRoute path="/signup" component={Signup} />
-          <PrivateRoute path="/chat" component={Chat} />
+          <PrivateRoute path="/chat/:id" component={Chat} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/friendrequest" component={FriendRequest} />
         </Switch>

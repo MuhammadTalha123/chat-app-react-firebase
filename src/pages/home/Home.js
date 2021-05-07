@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FormDialog from "../../components/addFriend/AddFriend";
 import Navbar from "../../components/navbar/Navbar";
 import { app } from "../../firebase/firebaseConfig";
+import history from "../../routes/history";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,10 @@ const Home = () => {
   myRef.onSnapshot((docSnapshot) => {
     setFriends(docSnapshot.data().friends);
   });
+  const handleSelectChat = (email) => {
+    let shortEmail = email.slice(0,email.indexOf("@"));
+    history.push(`/chat/${shortEmail}`);
+  };
   return (
     <div>
       <Navbar />
@@ -23,7 +28,7 @@ const Home = () => {
       {friends.map((item) => {
         return (
           <ul>
-            <li>{item}</li>
+            <li onClick={() => handleSelectChat(item)}>{item}</li>
             <hr />
           </ul>
         );
