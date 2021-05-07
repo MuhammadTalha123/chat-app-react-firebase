@@ -44,8 +44,34 @@ const FriendRequest = () => {
     });
   };
 
-  const handleRequestDecline = () => {
+  const handleRequestDecline = ({ from, to }) => {
     const myRef = app.firestore().collection("users").doc(myEmail);
+    const otherRef = app.firestore().collection("users").doc(from);
+    myRef.get().then((docSnapshot) => {
+      let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
+        return item.from !== from && item.to !== to;
+      });
+      myRef.set({
+        friendsRequest: requestsList,
+        userName: docSnapshot.data().userName,
+        uid: docSnapshot.data().uid,
+        userEmail: docSnapshot.data().userEmail,
+        friends: docSnapshot.data().friends,
+      });
+    });
+
+    otherRef.get().then((docSnapshot) => {
+      let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
+        return item.from !== from && item.to !== to;
+      });
+      otherRef.set({
+        friendsRequest: requestsList,
+        userName: docSnapshot.data().userName,
+        uid: docSnapshot.data().uid,
+        userEmail: docSnapshot.data().userEmail,
+        friends: docSnapshot.data().friends,
+      });
+    });
   };
 
   return (
