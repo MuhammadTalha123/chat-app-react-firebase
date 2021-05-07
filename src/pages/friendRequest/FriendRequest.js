@@ -9,24 +9,73 @@ const FriendRequest = () => {
   myRef.onSnapshot((docSnapshot) => {
     setRequests(docSnapshot.data().friendsRequest);
   });
+
+  const handleRequestAccept = ({ from, to }) => {
+    const myRef = app.firestore().collection("users").doc(myEmail);
+    const otherRef = app.firestore().collection("users").doc(from);
+    myRef.get().then((docSnapshot) => {
+      let friendsList = docSnapshot.data().friends;
+      let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
+        return item.from !== from && item.to !== to;
+      });
+      friendsList.push(from);
+      myRef.set({
+        friendsRequest: requestsList,
+        userName: docSnapshot.data().userName,
+        uid: docSnapshot.data().uid,
+        userEmail: docSnapshot.data().userEmail,
+        friends: friendsList,
+      });
+    });
+
+    otherRef.get().then((docSnapshot) => {
+      let friendsList = docSnapshot.data().friends;
+      let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
+        return item.from !== from && item.to !== to;
+      });
+      friendsList.push(myEmail);
+      otherRef.set({
+        friendsRequest: requestsList,
+        userName: docSnapshot.data().userName,
+        uid: docSnapshot.data().uid,
+        userEmail: docSnapshot.data().userEmail,
+        friends: friendsList,
+      });
+    });
+  };
+
+  const handleRequestDecline = () => {
+    const myRef = app.firestore().collection("users").doc(myEmail);
+  };
+
   return (
     <div>
       <div>
         <button onClick={() => history.push("/")}>Go Home</button>
       </div>
       {requests.map((item) => {
-        return (
+        return item.from != myEmail ? (
           <div className="friend_request_container">
             <div className="friend_request_name">
               <h2>{item.from}</h2>
             </div>
             <div className="friend_request_button">
-              <button className="friend_request_accept">ACCEPT</button>
-              <button className="friend_request_decline">DECLINE</button>
+              <button
+                className="friend_request_accept"
+                onClick={() => handleRequestAccept(item)}
+              >
+                ACCEPT
+              </button>
+              <button
+                className="friend_request_decline"
+                onClick={() => handleRequestDecline(item)}
+              >
+                DECLINE
+              </button>
             </div>
             <hr />
           </div>
-        );
+        ) : null;
       })}
     </div>
   );
