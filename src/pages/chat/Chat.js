@@ -3,8 +3,10 @@ import Navbar from "../../components/navbar/Navbar";
 import history from "../../routes/history";
 
 const Chat = () => {
-//   let msgInputValue = document.getElementById("msg_text").value;
-//   console.log(msgInputValue);
+const handleSendMsg = () => {
+  let msgInputValue = document.getElementById("msg_text").value;
+  console.log(msgInputValue);
+}
   return (
     <div>
       <Navbar />
@@ -26,6 +28,7 @@ const Chat = () => {
       </div>
       <div className="msg_input_div" style={{ textAlign: "center" }}>
         <input type="text" id="msg_text" placeholder="Message Text..." />
+        <button onClick={handleSendMsg}>SEND</button>
       </div>
     </div>
   );
