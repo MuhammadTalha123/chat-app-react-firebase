@@ -17,7 +17,7 @@ const Home = () => {
     setFriends(docSnapshot.data().friends);
   });
   const handleSelectChat = (email) => {
-    let shortEmail = email.slice(0,email.indexOf("@"));
+    let shortEmail = email.slice(0,email.indexOf("."));
     history.push(`/chat/${shortEmail}`);
   };
   return (

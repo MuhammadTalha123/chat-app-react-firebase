@@ -1,12 +1,32 @@
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import history from "../../routes/history";
+import { app } from "../../firebase/firebaseConfig";
 
 const Chat = () => {
-const handleSendMsg = () => {
-  let msgInputValue = document.getElementById("msg_text").value;
-  console.log(msgInputValue);
-}
+  const handleSendMsg = () => {
+    let msgInputValue = document.getElementById("msg_text").value;
+    console.log(msgInputValue);
+    let myEmail = localStorage.getItem("email");
+    let userEmail = window.location.href.slice(window.location.href.lastIndexOf("/")+1);
+    console.log(userEmail, myEmail);
+
+    app
+      .firestore()
+      .collection("chat")
+      .doc()
+      .set({
+        to: `${userEmail}.com`,
+        from: myEmail,
+        message: msgInputValue,
+      })
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
+  };
   return (
     <div>
       <Navbar />
