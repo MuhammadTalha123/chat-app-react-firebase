@@ -6,6 +6,7 @@ import { app } from "../../firebase/firebaseConfig";
 const Chat = () => {
   const [sentMsg, setSentMsg] = useState([]);
   const [recievedMsg, setRecievedMsg] = useState([]);
+  const [msgValue, setMsgValue] = useState("");
   useEffect(() => {
     let myEmail = localStorage.getItem("email");
     let userEmail = window.location.href.slice(
@@ -32,7 +33,7 @@ const Chat = () => {
       });
   }, []);
   const handleSendMsg = () => {
-    let msgInputValue = document.getElementById("msg_text").value;
+    let msgInputValue = msgValue;
     let myEmail = localStorage.getItem("email");
     let userEmail = window.location.href.slice(
       window.location.href.lastIndexOf("/") + 1
@@ -47,11 +48,15 @@ const Chat = () => {
         message: msgInputValue,
       })
       .then(() => {
+        setMsgValue("");
         console.log("Document successfully written!");
       })
       .catch((error) => {
         console.error("Error writing document: ", error);
       });
+  };
+  const handleMsgValue = (evt) => {
+    setMsgValue(evt.target.value);
   };
   return (
     <div>
@@ -81,7 +86,13 @@ const Chat = () => {
         })}
       </div>
       <div className="msg_input_div" style={{ textAlign: "center" }}>
-        <input type="text" id="msg_text" placeholder="Message Text..." />
+        <input
+          value={msgValue}
+          type="text"
+          id="msg_text"
+          placeholder="Message Text..."
+          onChange={handleMsgValue}
+        />
         <button onClick={handleSendMsg}>SEND</button>
       </div>
     </div>
