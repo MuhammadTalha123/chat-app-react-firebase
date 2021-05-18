@@ -42,7 +42,7 @@ const Signin = () => {
         <Emailinput />
         <Passwordinput />
         <Button onclick={handleSignin} text="SIGNIN" />
-        <p>
+        <p style={{marginTop: "20px"}}>
           If you are new first you signup <span
             style={{ cursor: "pointer", color: "blue" }}
             onClick={() => history.push("/signup")}>

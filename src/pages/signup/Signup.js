@@ -63,7 +63,7 @@ const Signup = () => {
       <Emailinput />
       <Passwordinput />
       <Button onclick={handleRegister} text="SIGNUP" className="signup_btn" />
-      <p>
+      <p style={{marginTop: "20px"}}>
         If you have already accouct then{" "}
         <span
           style={{ cursor: "pointer", color: "blue" }}
