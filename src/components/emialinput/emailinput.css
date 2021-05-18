@@ -1,0 +1,13 @@
+.email_input_container input {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.email_input_container input:focus {
+    background-color: #ddd;
+    outline: none;
+  }

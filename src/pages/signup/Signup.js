@@ -5,6 +5,7 @@ import Emailinput from "../../components/emialinput/Emailinput";
 import Button from "../../components/button/Button";
 import { app } from "../../firebase/firebaseConfig";
 import history from "../../routes/history";
+import "./signup.css";
 
 const Signup = () => {
   const handleRegister = () => {
@@ -55,13 +56,23 @@ const Signup = () => {
       });
   };
   return (
-    <div>
+    <div className="signup_container">
+    <h1>SIGNUP</h1>
+    <div className="signup_form">
       <Nameinput />
       <Emailinput />
       <Passwordinput />
-      <Button onclick={handleRegister} text="SIGNUP" />
-      <p>You have already then signin to your account.</p>
-      <Button text="SIGNIN" onclick={() => history.push("/signin")} />
+      <Button onclick={handleRegister} text="SIGNUP" className="signup_btn" />
+      <p>
+        If you have already accouct then{" "}
+        <span
+          style={{ cursor: "pointer", color: "blue" }}
+          onClick={() => history.push("/signin")}
+        >
+          signin
+        </span>.
+      </p>
+      </div>
     </div>
   );
 };

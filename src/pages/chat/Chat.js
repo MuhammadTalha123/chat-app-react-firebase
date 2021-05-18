@@ -38,10 +38,12 @@ const Chat = () => {
     let userEmail = window.location.href.slice(
       window.location.href.lastIndexOf("/") + 1
     );
+    let d = new Date().getTime();
+    console.log(d);
     app
       .firestore()
       .collection("chat")
-      .doc()
+      .doc(d+"")
       .set({
         to: `${userEmail}.com`,
         from: myEmail,
