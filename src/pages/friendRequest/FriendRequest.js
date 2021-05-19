@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
+import "./friendRequest.css";
 
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
@@ -75,13 +76,13 @@ const FriendRequest = () => {
   };
 
   return (
-    <div>
+    <div className="friend_request_container">
       <div>
-        <button onClick={() => history.push("/")}>Go Home</button>
+        <h1 onClick={() => history.push("/")}>{myEmail}</h1>
       </div>
       {requests.map((item) => {
         return item.from != myEmail ? (
-          <div className="friend_request_container">
+          <div className="friend_request_list_container">
             <div className="friend_request_name">
               <h2>{item.from}</h2>
             </div>
