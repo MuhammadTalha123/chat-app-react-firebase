@@ -7,6 +7,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { app } from "../../firebase/firebaseConfig";
+import "./addFriend.css";
 
 function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -70,7 +71,7 @@ function FormDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button id="add_friend_btn" variant="outlined" color="primary" onClick={handleClickOpen}>
         <i className="fas fa-plus" style={{ fontSize: "50px" }}></i>
       </Button>
       <Dialog

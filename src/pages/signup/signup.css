@@ -6,6 +6,7 @@
 body {
     background-color: white;
     font-family: 'Roboto Mono', monospace;
+    position: relative;
 }
 
 .signup_container {

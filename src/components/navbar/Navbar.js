@@ -1,6 +1,7 @@
 import React from "react";
 import { app } from "../../firebase/firebaseConfig";
 import history from "../../routes/history";
+import "./navbar.css";
 
 const Navbar = () => {
   const logout = () => {
@@ -18,10 +19,17 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="nav_container">
       <nav>
-        <button onClick={logout}>Logout</button>
-        <button onClick={() => history.push("/friendrequest")}>FRIEND REQUEST</button>
+        <button onClick={logout} className="logout_btn">
+          Logout
+        </button>
+        <button
+          onClick={() => history.push("/friendrequest")}
+          className="friend_request_btn"
+        >
+          FRIEND REQUEST
+        </button>
       </nav>
     </div>
   );

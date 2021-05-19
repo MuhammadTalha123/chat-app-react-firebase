@@ -3,6 +3,7 @@ import FormDialog from "../../components/addFriend/AddFriend";
 import Navbar from "../../components/navbar/Navbar";
 import { app } from "../../firebase/firebaseConfig";
 import history from "../../routes/history";
+import "./home.css";
 
 const Home = () => {
   const [email, setEmail] = useState("");
@@ -17,23 +18,27 @@ const Home = () => {
     setFriends(docSnapshot.data().friends);
   });
   const handleSelectChat = (email) => {
-    let shortEmail = email.slice(0,email.indexOf("."));
+    let shortEmail = email.slice(0, email.indexOf("."));
     history.push(`/chat/${shortEmail}`);
   };
   return (
-    <div>
-      <Navbar />
-      <h1>{email}</h1>
-      <h2>FRIENDS LIST</h2>
-      {friends.map((item) => {
-        return (
-          <ul>
-            <li onClick={() => handleSelectChat(item)}>{item}</li>
-            <hr />
-          </ul>
-        );
-      })}
-      <FormDialog />
+    <div className="home_container">
+      <div>
+        <Navbar />
+        <h1>User: {email}</h1>
+        <h2>FRIENDS LIST</h2>
+        {friends.map((item) => {
+          return (
+            <ul>
+              <li onClick={() => handleSelectChat(item)}>{item}</li>
+              <hr />
+            </ul>
+          );
+        })}
+      </div>
+      <div style={{ position: "relative" }}>
+        <FormDialog />
+      </div>
     </div>
   );
 };
