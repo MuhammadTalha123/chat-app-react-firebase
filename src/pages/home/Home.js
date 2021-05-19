@@ -25,7 +25,7 @@ const Home = () => {
     <div className="home_container">
       <div>
         <Navbar />
-        <h1>User: {email}</h1>
+        <h1 onClick={() => {history.push("/")}}>{email}</h1>
         <h2>FRIENDS LIST</h2>
         {friends.map((item) => {
           return (
