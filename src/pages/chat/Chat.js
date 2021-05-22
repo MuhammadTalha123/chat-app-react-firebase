@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
+import "./chat.css";
 
 const Chat = () => {
   const [msgArray, setMsgArray] = useState([]);
@@ -51,11 +52,14 @@ const Chat = () => {
     setMsgValue(evt.target.value);
   };
   return (
-    <div>
+    <div className="chat_container">
       <Navbar />
-      <button onClick={() => history.push("/")}>Go Home</button>
-      <h1>Chat</h1>
-      <div className="chat_paragraph">
+      <div className="home_btn_user_email_div">
+      <button className="go_home_btn" onClick={() => history.push("/")}>Go Home</button>
+      <h1>{userEmail}</h1>
+      </div>
+      <h2 style={{textAlign: "center"}}>Chat</h2>
+      <div className="chat_text">
         {msgArray.map((item, index) => {
           return item.data().from === myEmail ? (
             <p
@@ -84,7 +88,7 @@ const Chat = () => {
           );
         })}
       </div>
-      <div className="msg_input_div" style={{ textAlign: "center" }}>
+      <div className="msg_input_div">
         <input
           value={msgValue}
           type="text"

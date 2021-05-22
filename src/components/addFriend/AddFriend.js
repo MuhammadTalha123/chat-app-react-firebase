@@ -69,9 +69,11 @@ function FormDialog() {
 
   return (
     <div>
-      <Button id="add_friend_btn" variant="outlined" color="primary" onClick={handleClickOpen}>
-        <i className="fas fa-plus" style={{ fontSize: "50px" }}></i>
-      </Button>
+      <div>
+        <Button id="add_friend_btn" onClick={handleClickOpen}>
+          <i className="fa fa-plus-circle" style={{ fontSize: "50px" }}></i>
+        </Button>
+      </div>
       <Dialog
         open={open}
         onClose={handleClose}

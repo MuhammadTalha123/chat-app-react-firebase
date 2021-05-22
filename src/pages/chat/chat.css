@@ -1,0 +1,53 @@
+.chat_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.home_btn_user_email_div {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.home_btn_user_email_div h1 {
+    margin-left: 30px;
+}
+
+.go_home_btn {
+    outline: none;
+    outline-style: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 30px;
+    padding: 10px;
+    background-color: whitesmoke;
+    font-family: 'Roboto Mono', monospace;
+  }
+  
+  .go_home_btn:hover {
+      background-color: rgba(0, 0, 255, 0.225);
+      transition: 0.5s;
+      transform: scale(1.1);
+      font-family: 'Roboto Mono', monospace;
+  }
+
+  .msg_input_div {
+    display: flex;
+    flex-direction: initial;
+    justify-content: center;
+  }
+
+  .msg_input_div input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid lightgray;
+  }
+
+  .msg_input_div button {
+    padding: 10px;
+    background: whitesmoke;
+    outline: none;
+    outline-style: none;
+    border: none;
+  }

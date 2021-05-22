@@ -36,7 +36,7 @@ const Home = () => {
           );
         })}
       </div>
-      <div style={{ position: "relative" }}>
+      <div className="add_friend_div">
         <FormDialog />
       </div>
     </div>
