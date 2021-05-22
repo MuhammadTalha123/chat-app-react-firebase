@@ -4,32 +4,25 @@ import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
 
 const Chat = () => {
-  const [sentMsg, setSentMsg] = useState([]);
-  const [recievedMsg, setRecievedMsg] = useState([]);
+  const [msgArray, setMsgArray] = useState([]);
   const [msgValue, setMsgValue] = useState("");
+  let myEmail = localStorage.getItem("email");
+  let userEmail = window.location.href.slice(
+    window.location.href.lastIndexOf("/") + 1
+  );
   useEffect(() => {
-    let myEmail = localStorage.getItem("email");
-    let userEmail = window.location.href.slice(
-      window.location.href.lastIndexOf("/") + 1
-    );
     app
       .firestore()
       .collection("chat")
-      .where("from", "==", myEmail)
-      .where("to", "==", userEmail + ".com")
+      .where("from", "in", [myEmail, userEmail + ".com"])
       .onSnapshot((resp) => {
-        // console.log(resp.docs[0].data());
-        setSentMsg(resp.docs);
-      });
-
-    app
-      .firestore()
-      .collection("chat")
-      .where("to", "==", myEmail)
-      .where("from", "==", userEmail + ".com")
-      .onSnapshot((resp) => {
-        // console.log(resp.docs[0].data());
-        setRecievedMsg(resp.docs);
+        console.log(resp.docs);
+        let filteredResp = resp.docs.filter((data) => {
+          return (
+            data.data().to === myEmail || data.data().to === userEmail + ".com"
+          );
+        });
+        setMsgArray(filteredResp);
       });
   }, []);
   const handleSendMsg = () => {
@@ -39,14 +32,14 @@ const Chat = () => {
       window.location.href.lastIndexOf("/") + 1
     );
     let d = new Date().getTime();
-    console.log(d);
     app
       .firestore()
       .collection("chat")
-      .doc(d+"")
+      .doc(d + "")
       .set({
         to: `${userEmail}.com`,
         from: myEmail,
+        time: d,
         message: msgInputValue,
       })
       .then(() => {
@@ -66,21 +59,30 @@ const Chat = () => {
       <button onClick={() => history.push("/")}>Go Home</button>
       <h1>Chat</h1>
       <div className="chat_paragraph">
-        {sentMsg.map((item) => {
-          return (
+        {msgArray.map((item, index) => {
+          console.log("testing: ", item.data());
+          console.log("myEmail: ", myEmail);
+          return item.data().from === myEmail ? (
             <p
-              className="user_text"
-              style={{ textAlign: "right", marginRight: "20px" }}
+              key={index}
+              className="my_text"
+              style={{
+                textAlign: "right",
+                marginRight: "20px",
+                marginBottom: 10,
+              }}
             >
               {item.data().message}
             </p>
-          );
-        })}
-        {recievedMsg.map((item) => {
-          return (
+          ) : (
             <p
+              key={index}
               className="friend_text"
-              style={{ textAlign: "left", marginLeft: "20px" }}
+              style={{
+                textAlign: "left",
+                marginLeft: "20px",
+                marginBottom: 10,
+              }}
             >
               {item.data().message}
             </p>
