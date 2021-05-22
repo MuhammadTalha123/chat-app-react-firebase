@@ -29,7 +29,6 @@ function FormDialog() {
 
       usersRef.get().then((docSnapshot) => {
         if (docSnapshot.exists) {
-          console.log("user exist.");
           let requestList = docSnapshot.data().friendsRequest;
           let ifExist = requestList.find((element) => {
             return element.from === myEmail && element.to === inputValue;
@@ -60,7 +59,6 @@ function FormDialog() {
             handleClose();
           }
         } else {
-          console.log("user not exist.");
           alert("user not exist.");
         }
       });

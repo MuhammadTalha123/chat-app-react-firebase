@@ -79,6 +79,7 @@ const FriendRequest = () => {
     <div className="friend_request_container">
       <div>
         <h1 onClick={() => history.push("/")}>{myEmail}</h1>
+        <h2 style={{textAlign:"center"}}>Friend Requests</h2>
       </div>
       {requests.map((item) => {
         return item.from != myEmail ? (

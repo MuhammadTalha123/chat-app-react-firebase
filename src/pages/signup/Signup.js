@@ -37,22 +37,18 @@ const Signup = () => {
             friends: [],
             friendsRequest: [],
           })
-          .then(() => {
-            console.log("Document successfully written!");
+          .then(() => { 
           })
-          .catch((error) => {
-            console.error("Error writing document: ", error);
+          .catch((error) => { 
           });
-        let token = await user.getIdToken();
-        console.log(token);
+        let token = await user.getIdToken(); 
         localStorage.setItem("token", token);
         localStorage.setItem("email", user.email);
         history.push("/");
       })
       .catch((error) => {
         var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
+        var errorMessage = error.message; 
       });
   };
   return (

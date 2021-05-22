@@ -14,7 +14,6 @@ const Navbar = () => {
         history.push("/signin");
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 

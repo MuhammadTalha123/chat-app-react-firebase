@@ -16,7 +16,6 @@ const Chat = () => {
       .collection("chat")
       .where("from", "in", [myEmail, userEmail + ".com"])
       .onSnapshot((resp) => {
-        console.log(resp.docs);
         let filteredResp = resp.docs.filter((data) => {
           return (
             data.data().to === myEmail || data.data().to === userEmail + ".com"
@@ -44,10 +43,8 @@ const Chat = () => {
       })
       .then(() => {
         setMsgValue("");
-        console.log("Document successfully written!");
       })
       .catch((error) => {
-        console.error("Error writing document: ", error);
       });
   };
   const handleMsgValue = (evt) => {
@@ -60,8 +57,6 @@ const Chat = () => {
       <h1>Chat</h1>
       <div className="chat_paragraph">
         {msgArray.map((item, index) => {
-          console.log("testing: ", item.data());
-          console.log("myEmail: ", myEmail);
           return item.data().from === myEmail ? (
             <p
               key={index}

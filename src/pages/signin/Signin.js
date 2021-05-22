@@ -23,7 +23,6 @@ const Signin = () => {
       .then(async (userCredential) => {
         var user = userCredential.user;
         let token = await user.getIdToken();
-        console.log(token);
         localStorage.setItem("token", token);
         localStorage.setItem("email", user.email);
         history.push("/");
@@ -32,7 +31,6 @@ const Signin = () => {
         var errorCode = error.code;
         var errorMessage = error.message;
         alert(errorMessage);
-        console.log(errorMessage);
       });
   };
   return (
