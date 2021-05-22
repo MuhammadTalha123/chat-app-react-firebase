@@ -58,7 +58,7 @@ const Chat = () => {
       <button className="go_home_btn" onClick={() => history.push("/")}>Go Home</button>
       <h1>{userEmail}</h1>
       </div>
-      <h2 style={{textAlign: "center"}}>Chat</h2>
+      <h2 style={{textAlign: "center", marginBottom: "50px", marginTop: "10px"}}>Chat</h2>
       <div className="chat_text">
         {msgArray.map((item, index) => {
           return item.data().from === myEmail ? (

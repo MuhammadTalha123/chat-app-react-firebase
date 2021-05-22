@@ -32,15 +32,28 @@
       font-family: 'Roboto Mono', monospace;
   }
 
+  /* .chat_text {
+      overflow: scroll;
+  } */
+
   .msg_input_div {
     display: flex;
     flex-direction: initial;
     justify-content: center;
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
   }
 
   .msg_input_div input {
     width: 90%;
     padding: 10px;
+    border: 1px solid lightgray;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  .msg_input_div input:focus {
     border: 1px solid lightgray;
   }
 
@@ -50,4 +63,6 @@
     outline: none;
     outline-style: none;
     border: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
   }
