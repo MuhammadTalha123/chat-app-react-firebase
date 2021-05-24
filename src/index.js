@@ -1,10 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Index from "./routes/index"
+import React, { Suspense, lazy } from "react";
+import ReactDOM from "react-dom";
+import ErrorHandler from "./pages/errorHandler/ErrorHandler";
+const Index = lazy(() => import("./routes/index.js"));
 
 ReactDOM.render(
-  <>
-    <Index />
-  </>,
-  document.getElementById('root')
+  <ErrorHandler>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Index />
+    </Suspense>
+  </ErrorHandler>,
+  document.getElementById("root")
 );

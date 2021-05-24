@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
 import "./chat.css";
@@ -48,14 +47,19 @@ const Chat = () => {
       .catch((error) => {
       });
   };
+
+  const handleClearChat = () => {
+    alert("clear chat....");
+  }
+
   const handleMsgValue = (evt) => {
     setMsgValue(evt.target.value);
   };
   return (
     <div className="chat_container">
-      <Navbar />
       <div className="home_btn_user_email_div">
       <button className="go_home_btn" onClick={() => history.push("/")}>Go Home</button>
+      <button className="clear_chat_btn" onClick={handleClearChat}>Clear Chat</button>
       <h1>{userEmail}</h1>
       </div>
       <h2 style={{textAlign: "center", marginBottom: "50px", marginTop: "10px"}}>Chat</h2>
@@ -65,25 +69,15 @@ const Chat = () => {
             <p
               key={index}
               className="my_text"
-              style={{
-                textAlign: "right",
-                marginRight: "20px",
-                marginBottom: 10,
-              }}
             >
-              {item.data().message}
+              <span>{item.data().message}</span>
             </p>
           ) : (
             <p
               key={index}
               className="friend_text"
-              style={{
-                textAlign: "left",
-                marginLeft: "20px",
-                marginBottom: 10,
-              }}
             >
-              {item.data().message}
+              <span>{item.data().message}</span>
             </p>
           );
         })}

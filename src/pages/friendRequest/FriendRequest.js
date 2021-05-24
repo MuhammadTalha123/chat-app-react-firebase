@@ -17,8 +17,13 @@ const FriendRequest = () => {
     myRef.get().then((docSnapshot) => {
       let friendsList = docSnapshot.data().friends;
       let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
-        return item.from !== from && item.to !== to;
+        console.log("item.from", item.from);
+        console.log("from", from);
+        console.log("item.to", item.to);
+        console.log("to", to);
+        return item.from !== from || item.to !== to;
       });
+      console.log(requestsList);
       friendsList.push(from);
       myRef.set({
         friendsRequest: requestsList,
@@ -32,7 +37,7 @@ const FriendRequest = () => {
     otherRef.get().then((docSnapshot) => {
       let friendsList = docSnapshot.data().friends;
       let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
-        return item.from !== from && item.to !== to;
+        return item.from !== from;
       });
       friendsList.push(myEmail);
       otherRef.set({
@@ -50,7 +55,7 @@ const FriendRequest = () => {
     const otherRef = app.firestore().collection("users").doc(from);
     myRef.get().then((docSnapshot) => {
       let requestsList = docSnapshot.data().friendsRequest.filter((item) => {
-        return item.from !== from && item.to !== to;
+        return item.from !== from;
       });
       myRef.set({
         friendsRequest: requestsList,
@@ -79,7 +84,11 @@ const FriendRequest = () => {
     <div className="friend_request_container">
       <div>
         <h1 onClick={() => history.push("/")}>{myEmail}</h1>
-        <h2 style={{textAlign:"center"}}>Friend Requests</h2>
+        {requests.length > 0 ? (
+          <h2 style={{ textAlign: "center" }}>Friend Requests</h2>
+        ) : (
+          <h2 style={{ textAlign: "center" }}>No Friend Requests</h2>
+        )}
       </div>
       {requests.map((item) => {
         return item.from != myEmail ? (

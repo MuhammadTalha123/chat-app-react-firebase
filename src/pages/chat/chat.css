@@ -1,6 +1,6 @@
 .chat_container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .home_btn_user_email_div {
@@ -10,59 +10,137 @@
 }
 
 .home_btn_user_email_div h1 {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .go_home_btn {
-    outline: none;
-    outline-style: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 30px;
-    padding: 10px;
-    background-color: whitesmoke;
-    font-family: 'Roboto Mono', monospace;
-  }
-  
-  .go_home_btn:hover {
-      background-color: rgba(0, 0, 255, 0.225);
-      transition: 0.5s;
-      transform: scale(1.1);
-      font-family: 'Roboto Mono', monospace;
+  outline: none;
+  outline-style: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 30px;
+  padding: 10px;
+  background-color: whitesmoke;
+  font-family: "Roboto Mono", monospace;
+}
+
+.go_home_btn:hover {
+  background-color: rgba(0, 0, 255, 0.225);
+  transition: 0.5s;
+  transform: scale(1.1);
+  font-family: "Roboto Mono", monospace;
+}
+
+.clear_chat_btn {
+  outline: none;
+  outline-style: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 30px;
+  padding: 10px;
+  background-color: whitesmoke;
+  font-family: "Roboto Mono", monospace;
+}
+
+.clear_chat_btn:hover {
+  background-color: rgba(255, 0, 0, 0.253);
+  transition: 0.5s;
+  transform: scale(1.1);
+  font-family: "Roboto Mono", monospace;
+}
+
+.chat_text {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
+.my_text {
+  text-align: right;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+
+.my_text span {
+  background-color: whitesmoke;
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.friend_text {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.friend_text span {
+  background-color: whitesmoke;
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.msg_input_div {
+  display: flex;
+  flex-direction: initial;
+  justify-content: center;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+
+.msg_input_div input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.msg_input_div input:focus {
+  border: 1px solid lightgray;
+}
+
+.msg_input_div button {
+  padding: 10px;
+  background: whitesmoke;
+  outline: none;
+  outline-style: none;
+  border: none;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.msg_input_div button:hover {
+  background-color: rgba(0, 0, 255, 0.225);
+  transition: 0.5s;
+  font-family: "Roboto Mono", monospace;
+}
+
+@media only screen and (max-width: 500px) {
+  .home_btn_user_email_div {
+    flex-direction: column;
   }
 
-  /* .chat_text {
-      overflow: scroll;
-  } */
-
-  .msg_input_div {
-    display: flex;
-    flex-direction: initial;
-    justify-content: center;
-    position: absolute;
-    bottom: 50px;
-    width: 100%;
+  .go_home_btn {
+    margin-top: 15px;
   }
 
-  .msg_input_div input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+  .clear_chat_btn {
+    margin-top: 15px;
   }
 
-  .msg_input_div input:focus {
-    border: 1px solid lightgray;
+  .home_btn_user_email_div h1 {
+    margin-top: 15px;
   }
 
-  .msg_input_div button {
-    padding: 10px;
-    background: whitesmoke;
-    outline: none;
-    outline-style: none;
-    border: none;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+  .chat_text {
+    height: 45vh;
+    overflow-y: scroll;
+    margin-bottom: 50px;
   }
+}
