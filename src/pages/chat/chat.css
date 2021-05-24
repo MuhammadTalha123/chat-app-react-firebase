@@ -139,7 +139,7 @@
   }
 
   .chat_text {
-    height: 40vh;
+    height: 35vh;
     overflow-y: scroll;
     margin-bottom: 50px;
   }
