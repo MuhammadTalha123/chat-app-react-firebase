@@ -13,7 +13,7 @@ const Navbar = () => {
         localStorage.removeItem("email");
         history.push("/signin");
       })
-      .catch((error) => {});
+      .catch(console.error);
   };
 
   return (

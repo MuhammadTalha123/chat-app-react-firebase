@@ -7,16 +7,10 @@ import history from "../../routes/history";
 import "./signin.css";
 
 const Signin = () => {
-  const handleSignin = () => {
+  const handleSignin = (event) => {
+    event.preventDefault();
     let email = document.getElementById("email-id").value;
     let password = document.getElementById("password-id").value;
-
-    // if (email == "") {
-    //   alert("Email is Essential");
-    // }else if (password == "") {
-    //   alert("Password is Essential");
-    // }
-
     app
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -35,22 +29,21 @@ const Signin = () => {
   };
   return (
     <div className="signin_container">
-      <h1>SIGNIN</h1>
-      <div className="signin_form">
+      <h1>Sign in</h1>
+      <form onSubmit={handleSignin} className="signin_form">
         <Emailinput />
         <Passwordinput />
-        <Button onclick={handleSignin} text="Login" />
+        <Button type="submit" text="Login" />
         <p style={{ marginTop: "20px" }}>
           If you are new first you signup{" "}
           <span
             style={{ cursor: "pointer", color: "blue" }}
             onClick={() => history.push("/signup")}
           >
-            Here
+            Here.
           </span>
-          .
         </p>
-      </div>
+      </form>
     </div>
   );
 };
