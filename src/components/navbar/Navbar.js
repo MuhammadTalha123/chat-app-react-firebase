@@ -13,8 +13,7 @@ const Navbar = () => {
         localStorage.removeItem("email");
         history.push("/signin");
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   return (
@@ -27,7 +26,7 @@ const Navbar = () => {
           onClick={() => history.push("/friendrequest")}
           className="friend_request_btn"
         >
-          FRIEND REQUEST
+          Friend Requests
         </button>
       </nav>
     </div>

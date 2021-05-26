@@ -1,27 +1,23 @@
 .button_container {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: whitesmoke;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: whitesmoke;
 }
 
 .button_container:hover {
-  background-color: white;
+  box-shadow: rgb(128, 128, 128) 4px 10px;
   transition: 0.5s;
 }
 
 .button_comp {
-    outline: none;
-    outline-style: none;
-    background: none;
-    border: none;
-    margin: 10px 0 10px 0;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.button_comp:hover {
-  background-color: white;
-  transition: 0.5s;
+  outline: none;
+  outline-style: none;
+  background: none;
+  font-weight: 700;
+  border: none;
+  margin: 10px 0 10px 0;
+  cursor: pointer;
+  padding: 5px;
 }

@@ -39,11 +39,13 @@ const Signin = () => {
       <div className="signin_form">
         <Emailinput />
         <Passwordinput />
-        <Button onclick={handleSignin} text="SIGNIN" />
-        <p style={{marginTop: "20px"}}>
-          If you are new first you signup <span
+        <Button onclick={handleSignin} text="Login" />
+        <p style={{ marginTop: "20px" }}>
+          If you are new first you signup{" "}
+          <span
             style={{ cursor: "pointer", color: "blue" }}
-            onClick={() => history.push("/signup")}>
+            onClick={() => history.push("/signup")}
+          >
             Here
           </span>
           .
