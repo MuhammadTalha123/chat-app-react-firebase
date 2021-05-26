@@ -10,7 +10,7 @@ const Passwordinput = () => {
           required
           type="password"
           id="password-id"
-          autoComplete
+          autoComplete="true"
           placeholder="Enter Your Password..."
         />
       </div>

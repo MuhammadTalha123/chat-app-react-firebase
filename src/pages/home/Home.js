@@ -6,17 +6,15 @@ import history from "../../routes/history";
 import "./home.css";
 
 const Home = () => {
-  const [email, setEmail] = useState("");
   const [friendsRequest, setFriendsRequest] = useState([]);
   let myEmail = localStorage.getItem("email");
-  const myRef = app.firestore().collection("users").doc(myEmail);
   useEffect(() => {
-    let email = localStorage.getItem("email");
-    setEmail(email);
+    const myRef = app.firestore().collection("users").doc(myEmail);
+    myRef.onSnapshot((docSnapshot) => {
+      const { userName, friends } = docSnapshot.data();
+      setFriendsRequest(friends);
+    });
   }, []);
-  myRef.onSnapshot((docSnapshot) => {
-    setFriendsRequest(docSnapshot.data().friends);
-  });
   const handleSelectChat = (email) => {
     let shortEmail = email.slice(0, email.indexOf("."));
     history.push(`/chat/${shortEmail}`);
@@ -25,13 +23,6 @@ const Home = () => {
     <div className="home_container">
       <div>
         <Navbar />
-        <h1
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          {email}
-        </h1>
         {friendsRequest.length ? <h2>FRIENDS LIST</h2> : <h2>No Friends</h2>}
         {friendsRequest.map((item) => {
           return (

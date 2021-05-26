@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
 import "./friendRequest.css";
@@ -6,10 +6,13 @@ import "./friendRequest.css";
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
   let myEmail = localStorage.getItem("email");
-  const myRef = app.firestore().collection("users").doc(myEmail);
-  myRef.onSnapshot((docSnapshot) => {
-    setRequests(docSnapshot.data().friendsRequest);
-  });
+
+  useEffect(() => {
+    const myRef = app.firestore().collection("users").doc(myEmail);
+    myRef.onSnapshot((docSnapshot) => {
+      setRequests(docSnapshot.data().friendsRequest);
+    });
+  }, []);
 
   const handleRequestAccept = ({ from, to }) => {
     const myRef = app.firestore().collection("users").doc(myEmail);
