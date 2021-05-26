@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
 import "./chat.css";
+import Loading from "../../components/loading/Loading";
 
 const Chat = () => {
   const [msgArray, setMsgArray] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [msgValue, setMsgValue] = useState("");
   let myEmail = localStorage.getItem("email");
   let userEmail = window.location.href.slice(
@@ -22,6 +24,7 @@ const Chat = () => {
           );
         });
         setMsgArray(filteredResp);
+        setLoading(false);
       });
   }, []);
   const handleSendMsg = () => {
@@ -44,8 +47,7 @@ const Chat = () => {
       .then(() => {
         setMsgValue("");
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   // const handleClearChat = () => {
@@ -55,28 +57,32 @@ const Chat = () => {
   const handleMsgValue = (evt) => {
     setMsgValue(evt.target.value);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="chat_container">
       <div className="home_btn_user_email_div">
-      <button className="go_home_btn" onClick={() => history.push("/")}>Go Home</button>
-      {/*<button className="clear_chat_btn" onClick={handleClearChat}>Clear Chat</button>*/}
-      <h1>{userEmail}</h1>
+        <button className="go_home_btn" onClick={() => history.push("/")}>
+          Go Home
+        </button>
+        {/*<button className="clear_chat_btn" onClick={handleClearChat}>Clear Chat</button>*/}
+        <h1>{userEmail}</h1>
       </div>
-      <h2 style={{textAlign: "center", marginBottom: "50px", marginTop: "10px"}}>Chat</h2>
+      <h2
+        style={{ textAlign: "center", marginBottom: "50px", marginTop: "10px" }}
+      >
+        Chat
+      </h2>
       <div className="chat_text">
         {msgArray.map((item, index) => {
           return item.data().from === myEmail ? (
-            <p
-              key={index}
-              className="my_text"
-            >
+            <p key={index} className="my_text">
               <span>{item.data().message}</span>
             </p>
           ) : (
-            <p
-              key={index}
-              className="friend_text"
-            >
+            <p key={index} className="friend_text">
               <span>{item.data().message}</span>
             </p>
           );

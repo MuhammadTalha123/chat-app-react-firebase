@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
 import Navbar from "../../components/navbar/Navbar";
 import "./friendRequest.css";
+import Loading from "../../components/loading/Loading";
 
 const FriendRequest = () => {
   const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
   let myEmail = localStorage.getItem("email");
 
   useEffect(() => {
     const myRef = app.firestore().collection("users").doc(myEmail);
     myRef.onSnapshot((docSnapshot) => {
       setRequests(docSnapshot.data().friendsRequest);
+      setLoading(false);
     });
   }, []);
 
@@ -84,14 +86,21 @@ const FriendRequest = () => {
     });
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="friend_request_container">
-    <Navbar />
+      <Navbar />
       <div>
         {requests.length > 0 ? (
-          <h2 style={{ textAlign: "center", marginTop: "50px" }}>Friend Requests</h2>
+          <h2 style={{ textAlign: "center", marginTop: "50px" }}>
+            Friend Requests
+          </h2>
         ) : (
-          <h2 style={{ textAlign: "center", marginTop: "50px" }}>No Friend Requests</h2>
+          <h2 style={{ textAlign: "center", marginTop: "50px" }}>
+            No Friend Requests
+          </h2>
         )}
       </div>
       {requests.map((item) => {

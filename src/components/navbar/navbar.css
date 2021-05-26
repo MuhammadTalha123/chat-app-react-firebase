@@ -1,6 +1,8 @@
 .nav_container {
   /* position: fixed; */
   margin-top: 20px;
+  box-shadow: 5px 5px 3px #aaaaaa1d;
+  padding: 0px 0 20px 0px;
 }
 
 .nav_container nav {
@@ -52,7 +54,7 @@
   font-weight: 700;
   padding: 10px;
   background-color: whitesmoke;
-  font-family: "Roboto Mono", monospace; 
+  font-family: "Roboto Mono", monospace;
 }
 
 .home_btn:hover {
