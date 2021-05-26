@@ -19,6 +19,7 @@ const Navbar = () => {
   return (
     <div className="nav_container">
       <nav>
+      <button className="home_btn" onClick={() => {history.push("/")}}>Home</button>
         <button onClick={logout} className="logout_btn">
           Logout
         </button>

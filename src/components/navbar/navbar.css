@@ -42,3 +42,20 @@
   box-shadow: rgb(128, 128, 128) 2px 5px;
   transition: 0.5s;
 }
+
+.home_btn {
+  outline: none;
+  outline-style: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px;
+  background-color: whitesmoke;
+  font-family: "Roboto Mono", monospace; 
+}
+
+.home_btn:hover {
+  box-shadow: rgb(128, 128, 128) 2px 5px;
+  transition: 0.5s;
+}

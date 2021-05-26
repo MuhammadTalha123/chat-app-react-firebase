@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import history from "../../routes/history";
 import { app } from "../../firebase/firebaseConfig";
+import Navbar from "../../components/navbar/Navbar";
 import "./friendRequest.css";
 
 const FriendRequest = () => {
@@ -85,12 +86,12 @@ const FriendRequest = () => {
 
   return (
     <div className="friend_request_container">
+    <Navbar />
       <div>
-        <h1 onClick={() => history.push("/")}>{myEmail}</h1>
         {requests.length > 0 ? (
-          <h2 style={{ textAlign: "center" }}>Friend Requests</h2>
+          <h2 style={{ textAlign: "center", marginTop: "50px" }}>Friend Requests</h2>
         ) : (
-          <h2 style={{ textAlign: "center" }}>No Friend Requests</h2>
+          <h2 style={{ textAlign: "center", marginTop: "50px" }}>No Friend Requests</h2>
         )}
       </div>
       {requests.map((item) => {
